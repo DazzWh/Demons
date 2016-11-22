@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=1]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "PlayerHit"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Shadow:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 0.644531, 0, 0, 1 ), Color( 0.701961, 0.764706, 0.701961, 1 ) ] }
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/PlayerHit = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+

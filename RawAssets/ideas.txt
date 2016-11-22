@@ -1,0 +1,9 @@
+Sans
+    Hands break if damaged
+    sans gives increased attack speed if beaten
+
+Kraken Boss
+    throws a wave at some point, you need to get behind a rock to not get hit
+    cave scenery
+    in a puddle so you can't walk up to him
+    gives a wide attack

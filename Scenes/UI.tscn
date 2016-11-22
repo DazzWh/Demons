@@ -1,0 +1,275 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://Fonts/kenpixel24.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://fps_counter.gd" type="Script" id=2]
+[ext_resource path="res://Images/red_bar_under.tex" type="Texture" id=3]
+[ext_resource path="res://Images/red_bar.tex" type="Texture" id=4]
+[ext_resource path="res://Fonts/kenpixel80.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://Scenes/pause_screen.gd" type="Script" id=6]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0, 0, 1 )
+light_color = Color( 0, 0, 0, 1 )
+dark_color = Color( 0, 0, 0, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.6, 0.6, 0.6, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0, 0, 1 )
+light_color = Color( 0, 0, 0, 1 )
+dark_color = Color( 0, 0, 0, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.6, 0.6, 0.6, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[node name="UI" type="CanvasLayer"]
+
+process/pause_mode = 2
+layer = 0
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="FPS" type="Label" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 14.0
+margin/right = 143.0
+margin/bottom = 76.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.796875, 0, 0, 1 )
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+
+visibility/opacity = 0.75
+anchor/top = 1
+anchor/right = -2147483648
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = -2147483648
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 54.0
+margin/right = 0.0
+margin/bottom = 720.0
+__meta__ = { "_edit_lock_":true }
+
+[node name="HealthLabel" type="RichTextLabel" parent="."]
+
+anchor/top = 1
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 43.0
+margin/right = 1156.0
+margin/bottom = 717.0
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0.839844, 0.1017, 0.1017, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "HEALTH"
+visible_characters = -1
+__meta__ = { "_edit_lock_":true }
+
+[node name="BossHealthLabel" type="RichTextLabel" parent="."]
+
+anchor/top = 1
+anchor/right = -2147483648
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1197.0
+margin/top = 43.0
+margin/right = 0.0
+margin/bottom = 727.0
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0.839844, 0.1017, 0.1017, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "SANS"
+visible_characters = -1
+__meta__ = { "_edit_lock_":true }
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 114.0
+margin/top = 675.0
+margin/right = 314.0
+margin/bottom = 715.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = false
+texture/under = ExtResource( 3 )
+texture/over = null
+texture/progress = ExtResource( 4 )
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="BossHealthBar" type="TextureProgress" parent="."]
+
+rect/scale = Vector2( 2.5, 2 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 691.0
+margin/top = 675.0
+margin/right = 891.0
+margin/bottom = 715.0
+range/min = 0.0
+range/max = 500.0
+range/step = 1.0
+range/page = 0.0
+range/value = 500.0
+range/exp_edit = false
+range/rounded = false
+texture/under = ExtResource( 3 )
+texture/over = null
+texture/progress = ExtResource( 4 )
+mode = 1
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="BlackoutPanel" type="Panel" parent="."]
+
+visibility/opacity = 0.0
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="VictoryLabel" type="RichTextLabel" parent="."]
+
+visibility/opacity = 0.0
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 177.0
+margin/top = 191.0
+margin/right = -250.0
+margin/bottom = -300.0
+custom_fonts/normal_font = ExtResource( 5 )
+custom_colors/default_color = Color( 0.824219, 0.728008, 0.0998077, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "VICTORY!"
+visible_characters = -1
+
+[node name="Pause" type="Control" parent="."]
+
+process/pause_mode = 2
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 6 )
+
+[node name="Panel" type="Panel" parent="Pause"]
+
+visibility/opacity = 0.8
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1283.0
+margin/bottom = 718.0
+custom_styles/panelf = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+custom_styles/panelnc = SubResource( 4 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Pause"]
+
+visibility/opacity = 0.8
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 6.0
+margin/top = 203.0
+margin/right = 1278.0
+margin/bottom = 467.0
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0.636719, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = "[center]\nPaused\n\nPress ESC to return to menu\nPress any other key resume \n"
+visible_characters = -1
+
+

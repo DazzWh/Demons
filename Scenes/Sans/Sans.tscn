@@ -1,0 +1,471 @@
+[gd_scene load_steps=18 format=1]
+
+[ext_resource path="res://Scenes/Sans/Sans.gd" type="Script" id=1]
+[ext_resource path="res://Images/particle_smoke.tex" type="Texture" id=2]
+[ext_resource path="res://Scenes/Sans/Sans_Head.gd" type="Script" id=3]
+[ext_resource path="res://Images/Sans.tex" type="Texture" id=4]
+[ext_resource path="res://Scenes/Sans/Sans_Hand.gd" type="Script" id=5]
+[ext_resource path="res://Images/light.tex" type="Texture" id=6]
+[ext_resource path="res://Audio/EFX SD Rage Monster 13 B.smp" type="Sample" id=7]
+[ext_resource path="res://Audio/Screams&Shouts_monster_processed_176.smp" type="Sample" id=8]
+[ext_resource path="res://Audio/SansHurt.smp" type="Sample" id=9]
+[ext_resource path="res://Audio/SPLAT Crush 01.smp" type="Sample" id=10]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "GotHit"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Head_Image:modulate")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ] }
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "Death"
+length = 4.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Hand_Left:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Hand_Right:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Head_Image:frame")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.6, 1.2, 1.7, 2.3 ), "transitions":FloatArray( 1, 1, 1, 1, 1 ), "update":1, "values":[ 7, 8, 9, 10, 11 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Head_Image:transform/pos")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 0.9, 1, 1.3, 1.7, 1.9, 2.1, 2.3, 2.6 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( 2, 2 ), Vector2( -2, -2 ), Vector2( 0, 0 ), Vector2( 4, 2 ), Vector2( 4, 3 ), Vector2( 3, 4 ), Vector2( 0, -3 ), Vector2( -4, -4 ), Vector2( 10, 10 ), Vector2( 20, -10 ), Vector2( -30, 30 ), Vector2( 0, 0 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Head_Image:visibility/visible")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 3 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("BrokenHead:visibility/visible")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 3 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("BrokenHead/Sprite:transform/pos")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( 30, -30 ) ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("BrokenHead/Sprite:visibility/opacity")
+tracks/7/interp = 1
+tracks/7/imported = false
+tracks/7/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/8/type = "value"
+tracks/8/path = NodePath("BrokenHead/Sprite1:transform/pos")
+tracks/8/interp = 1
+tracks/8/imported = false
+tracks/8/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -50, -50 ) ] }
+tracks/9/type = "value"
+tracks/9/path = NodePath("BrokenHead/Sprite1:visibility/opacity")
+tracks/9/interp = 1
+tracks/9/imported = false
+tracks/9/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/10/type = "value"
+tracks/10/path = NodePath("BrokenHead/Sprite2:transform/pos")
+tracks/10/interp = 1
+tracks/10/imported = false
+tracks/10/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( 10, 5 ) ] }
+tracks/11/type = "value"
+tracks/11/path = NodePath("BrokenHead/Sprite2:visibility/opacity")
+tracks/11/interp = 1
+tracks/11/imported = false
+tracks/11/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/12/type = "value"
+tracks/12/path = NodePath("BrokenHead/Sprite3:transform/pos")
+tracks/12/interp = 1
+tracks/12/imported = false
+tracks/12/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( 40, -20 ) ] }
+tracks/13/type = "value"
+tracks/13/path = NodePath("BrokenHead/Sprite3:visibility/opacity")
+tracks/13/interp = 1
+tracks/13/imported = false
+tracks/13/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/14/type = "value"
+tracks/14/path = NodePath("BrokenHead/Sprite4:transform/pos")
+tracks/14/interp = 1
+tracks/14/imported = false
+tracks/14/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -10, 5 ) ] }
+tracks/15/type = "value"
+tracks/15/path = NodePath("BrokenHead/Sprite4:visibility/opacity")
+tracks/15/interp = 1
+tracks/15/imported = false
+tracks/15/keys = { "times":FloatArray( 3, 4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/16/type = "value"
+tracks/16/path = NodePath("../Particles2D:config/emitting")
+tracks/16/interp = 1
+tracks/16/imported = false
+tracks/16/keys = { "times":FloatArray( 3 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/17/type = "method"
+tracks/17/path = NodePath("..")
+tracks/17/interp = 1
+tracks/17/imported = false
+tracks/17/keys = { "times":FloatArray( 4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"victory" } ] }
+tracks/18/type = "value"
+tracks/18/path = NodePath("../SamplePlayer2D:play/play")
+tracks/18/interp = 1
+tracks/18/imported = false
+tracks/18/keys = { "times":FloatArray( 0, 3 ), "transitions":FloatArray( 1, 1 ), "update":2, "values":[ "Angry", "Splat" ] }
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="Animation" id=5]
+
+length = 0.6
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.6 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 2, 5 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:energy")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.3, 0.6 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 1.0, 1.2, 1.0 ] }
+
+[sub_resource type="Animation" id=6]
+
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hand_Left_Image:modulate")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ] }
+
+[sub_resource type="SampleLibrary" id=7]
+
+samples/Angry = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/Fire = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/Hurt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
+samples/Splat = { "db":3.0, "pitch":1.0, "sample":ExtResource( 10 ) }
+
+[node name="Sans" type="KinematicBody2D"]
+
+input/pickable = false
+collision/layers = 2
+collision/mask = 2
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+config/amount = 200
+config/lifetime = 4.0
+config/texture = ExtResource( 2 )
+params/direction = 180.0
+params/spread = 180.0
+params/linear_velocity = 20.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/spin_velocity = 20.0
+
+[node name="Head" type="KinematicBody2D" parent="."]
+
+transform/pos = Vector2( -2.33665, 3 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 2.5, 0, 0, 2.5, -0.291978, -1.75193 )
+shapes/0/trigger = false
+collision/layers = 2
+collision/mask = 2
+collision/margin = 0.08
+script/script = ExtResource( 3 )
+
+[node name="BrokenHead" type="Node2D" parent="Head"]
+
+visibility/visible = false
+
+[node name="Sprite" type="Sprite" parent="Head/BrokenHead"]
+
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 7
+frame = 12
+
+[node name="Sprite1" type="Sprite" parent="Head/BrokenHead"]
+
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 7
+frame = 13
+
+[node name="Sprite2" type="Sprite" parent="Head/BrokenHead"]
+
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 7
+frame = 14
+
+[node name="Sprite3" type="Sprite" parent="Head/BrokenHead"]
+
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 7
+frame = 15
+
+[node name="Sprite4" type="Sprite" parent="Head/BrokenHead"]
+
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 7
+frame = 16
+
+[node name="Head_Image" type="Sprite" parent="Head"]
+
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 7
+frame = 1
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="Head"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/GotHit = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+
+visibility/visible = false
+transform/pos = Vector2( -0.291978, -1.75193 )
+transform/scale = Vector2( 2.5, 2.5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="DeathAnimation" type="AnimationPlayer" parent="Head"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Death = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Hand_Left" type="KinematicBody2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( -66.8294, 12.8427 )
+input/pickable = false
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.5, 0, 0, 1.5, 1.90735e-06, 8.32394 )
+shapes/0/trigger = false
+collision/layers = 2
+collision/mask = 2
+collision/margin = 0.08
+script/script = ExtResource( 5 )
+
+[node name="Hand_Left_Image" type="Sprite" parent="Hand_Left"]
+
+texture = ExtResource( 4 )
+vframes = 3
+hframes = 7
+frame = 4
+__meta__ = { "_edit_lock_":true }
+
+[node name="Light2D" type="Light2D" parent="Hand_Left/Hand_Left_Image"]
+
+transform/pos = Vector2( 0.0567436, 8.9054 )
+enabled = true
+texture = ExtResource( 6 )
+offset = Vector2( 0, 0 )
+scale = 0.01
+color = Color( 1, 0, 0, 1 )
+energy = 1.11361
+mode = 0
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="MovementPlayer" type="AnimationPlayer" parent="Hand_Left/Hand_Left_Image"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/WiggleFingers = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "WiggleFingers"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand_Left"]
+
+visibility/visible = false
+transform/pos = Vector2( 1.90735e-06, 8.32394 )
+transform/scale = Vector2( 1.5, 1.5 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="Hand_Left"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/GotHit = SubResource( 6 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Hand_Right" type="KinematicBody2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 60.6458, 12.367 )
+input/pickable = false
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1.5, 0, 0, 1.5, 1.90735e-06, 8.32394 )
+shapes/0/trigger = false
+collision/layers = 2
+collision/mask = 2
+collision/margin = 0.08
+script/script = ExtResource( 5 )
+
+[node name="Hand_Left_Image" type="Sprite" parent="Hand_Right"]
+
+transform/pos = Vector2( -2.61609, 2.14044 )
+texture = ExtResource( 4 )
+flip_h = true
+vframes = 3
+hframes = 7
+frame = 4
+__meta__ = { "_edit_lock_":true }
+
+[node name="Light2D" type="Light2D" parent="Hand_Right/Hand_Left_Image"]
+
+transform/pos = Vector2( 0.0567436, 8.9054 )
+enabled = true
+texture = ExtResource( 6 )
+offset = Vector2( 0, 0 )
+scale = 0.01
+color = Color( 1, 0, 0, 1 )
+energy = 1.11361
+mode = 0
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = false
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="MovementPlayer" type="AnimationPlayer" parent="Hand_Right/Hand_Left_Image"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/WiggleFingers = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "WiggleFingers"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand_Right"]
+
+visibility/visible = false
+transform/pos = Vector2( 1.90735e-06, 8.32394 )
+transform/scale = Vector2( 1.5, 1.5 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="HitAnimationPlayer" type="AnimationPlayer" parent="Hand_Right"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/GotHit = SubResource( 6 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="BigAttackTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = -5.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 5
+config/samples = SubResource( 7 )
+config/pitch_random = 0.0
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
+
+[connection signal="timeout" from="BigAttackTimer" to="." method="_on_BigAttackTimer_timeout"]
+
+

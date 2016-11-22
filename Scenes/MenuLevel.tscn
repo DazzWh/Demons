@@ -1,0 +1,529 @@
+[gd_scene load_steps=19 format=1]
+
+[ext_resource path="res://Scenes/MenuLevel.gd" type="Script" id=1]
+[ext_resource path="res://collisionTilemap.xml" type="TileSet" id=2]
+[ext_resource path="res://Fonts/kenpixel14.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://Scenes/Pentagram.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/KrackenPentagram.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/SansPentagram.gd" type="Script" id=6]
+[ext_resource path="res://Fonts/kenpixelmini16.fnt" type="BitmapFont" id=7]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Audio/Bluezone-Dmovie-ambience-022.ogg" type="AudioStream" id=9]
+
+[sub_resource type="Animation" id=1]
+
+resource/name = "animate"
+length = 5.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("KrackenLabelContainer/KrackenLabel:rect/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 2.5, 5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 124, -19 ), Vector2( 124, -25 ), Vector2( 124, -19 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("KrackenLabelContainer/Hard:rect/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 2.5, 5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 139, 1 ), Vector2( 139, -6 ), Vector2( 139, 1 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("KrackenLabelContainer1/KrackenLabel:rect/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 2.5, 5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( -191, -12 ), Vector2( -192, -21 ), Vector2( -191, -12 ) ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("KrackenLabelContainer1/Hard:rect/pos")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 2.5, 5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( -191, 8 ), Vector2( -191, 0 ), Vector2( -191, 8 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("CreditsLabel:rect/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 2.5, 5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( -27, 72 ), Vector2( -27, 80 ), Vector2( -27, 72 ) ] }
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "Hide credits"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Credits/Panel:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.95, 0.0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Credits/Credits:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.95, 0.0 ] }
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "Show credits"
+length = 0.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Credits/Panel:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 0.95 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Credits/Credits:visibility/opacity")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 0.95 ] }
+
+[sub_resource type="CircleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="CircleShape2D" id=6]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="Animation" id=7]
+
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 0.71875, 0.65979, 0.65979, 1 ), Color( 0, 0, 0, 1 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("StreamPlayer:stream/volume_db")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 1.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 0.0 ] }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 1.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"kracken" } ] }
+
+[sub_resource type="Animation" id=8]
+
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 0.429688, 0.429688, 0.429688, 1 ), Color( 0, 0, 0, 1 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("StreamPlayer:stream/volume_db")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 1.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, -15.0 ] }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 1.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"sans" } ] }
+
+[sub_resource type="Animation" id=9]
+
+resource/name = "win"
+length = 5.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("WASD:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Arrows:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("WINNER!:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("WINNER!:custom_colors/default_color")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 2.5, 5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Color( 1, 0.960938, 0, 1 ), Color( 0.671875, 0.487216, 0.0498657, 1 ), Color( 1, 0.960938, 0, 1 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("WINNER!:rect/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 2.5, 5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( -94, -106 ), Vector2( -94, -90 ), Vector2( -94, -106 ) ] }
+
+[node name="MenuLevel" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+color = Color( 0.717647, 0.658824, 0.658824, 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -524304, 0, -524303, 0, -524302, 0, -524301, 0, -524300, 0, -524299, 0, -524298, 0, -524297, 0, -524296, 0, -524295, 0, -524294, 0, -524293, 0, -524292, 0, -524291, 0, -524290, 0, -524289, 0, -589824, 0, -589823, 0, -589822, 0, -589821, 0, -589820, 0, -589819, 0, -589818, 0, -589817, 0, -589816, 0, -589815, 0, -589814, 0, -589813, 0, -589812, 0, -589811, 0, -589810, 0, -589809, 0, -458768, 0, -458767, 1, -458766, 1, -458765, 1, -458764, 1, -458763, 1, -458762, 1, -458761, 1, -458760, 1, -458759, 1, -458758, 1, -458757, 1, -458756, 1, -458755, 1, -458754, 1, -458753, 1, -524288, 1, -524287, 1, -524286, 1, -524285, 1, -524284, 1, -524283, 1, -524282, 1, -524281, 1, -524280, 1, -524279, 1, -524278, 1, -524277, 1, -524276, 1, -524275, 1, -524274, 1, -524273, 0, -393232, 0, -393231, 1, -393230, 1, -393229, 1, -393228, 1, -393227, 1, -393226, 1, -393225, 1, -393224, 1, -393223, 1, -393222, 1, -393221, 1, -393220, 1, -393219, 1, -393218, 1, -393217, 1, -458752, 1, -458751, 1, -458750, 1, -458749, 1, -458748, 1, -458747, 1, -458746, 1, -458745, 1, -458744, 1, -458743, 1, -458742, 1, -458741, 1, -458740, 1, -458739, 1, -458738, 1, -458737, 0, -327696, 0, -327695, 1, -327694, 1, -327693, 1, -327692, 1, -327691, 1, -327690, 1, -327689, 1, -327688, 1, -327687, 1, -327686, 1, -327685, 1, -327684, 1, -327683, 1, -327682, 1, -327681, 1, -393216, 1, -393215, 1, -393214, 1, -393213, 1, -393212, 1, -393211, 1, -393210, 1, -393209, 1, -393208, 1, -393207, 1, -393206, 1, -393205, 1, -393204, 1, -393203, 1, -393202, 1, -393201, 0, -262160, 0, -262159, 1, -262158, 1, -262157, 1, -262156, 1, -262155, 1, -262154, 1, -262153, 1, -262152, 1, -262151, 1, -262150, 1, -262149, 1, -262148, 1, -262147, 1, -262146, 1, -262145, 1, -327680, 1, -327679, 1, -327678, 1, -327677, 1, -327676, 1, -327675, 1, -327674, 1, -327673, 1, -327672, 1, -327671, 1, -327670, 1, -327669, 1, -327668, 1, -327667, 1, -327666, 1, -327665, 0, -196624, 0, -196623, 1, -196622, 1, -196621, 1, -196620, 1, -196619, 1, -196618, 1, -196617, 1, -196616, 1, -196615, 1, -196614, 1, -196613, 1, -196612, 1, -196611, 1, -196610, 1, -196609, 1, -262144, 1, -262143, 1, -262142, 1, -262141, 1, -262140, 1, -262139, 1, -262138, 1, -262137, 1, -262136, 1, -262135, 1, -262134, 1, -262133, 1, -262132, 1, -262131, 1, -262130, 1, -262129, 0, -131088, 0, -131087, 1, -131086, 1, -131085, 1, -131084, 1, -131083, 1, -131082, 1, -131081, 1, -131080, 1, -131079, 1, -131078, 1, -131077, 1, -131076, 1, -131075, 1, -131074, 1, -131073, 1, -196608, 1, -196607, 1, -196606, 1, -196605, 1, -196604, 1, -196603, 1, -196602, 1, -196601, 1, -196600, 1, -196599, 1, -196598, 1, -196597, 1, -196596, 1, -196595, 1, -196594, 1, -196593, 0, -65552, 0, -65551, 1, -65550, 1, -65549, 1, -65548, 1, -65547, 1, -65546, 1, -65545, 1, -65544, 1, -65543, 1, -65542, 1, -65541, 1, -65540, 1, -65539, 1, -65538, 1, -65537, 1, -131072, 1, -131071, 1, -131070, 1, -131069, 1, -131068, 1, -131067, 1, -131066, 1, -131065, 1, -131064, 1, -131063, 1, -131062, 1, -131061, 1, -131060, 1, -131059, 1, -131058, 1, -131057, 0, -16, 0, -15, 1, -14, 1, -13, 1, -12, 1, -11, 1, -10, 1, -9, 1, -8, 1, -7, 1, -6, 1, -5, 1, -4, 1, -3, 1, -2, 1, -1, 1, -65536, 1, -65535, 1, -65534, 1, -65533, 1, -65532, 1, -65531, 1, -65530, 1, -65529, 1, -65528, 1, -65527, 1, -65526, 1, -65525, 1, -65524, 1, -65523, 1, -65522, 1, -65521, 0, 65520, 0, 65521, 1, 65522, 1, 65523, 1, 65524, 1, 65525, 1, 65526, 1, 65527, 1, 65528, 1, 65529, 1, 65530, 1, 65531, 1, 65532, 1, 65533, 1, 65534, 1, 65535, 1, 0, 1, 1, 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9, 1, 10, 1, 11, 1, 12, 1, 13, 1, 14, 1, 15, 0, 131056, 0, 131057, 1, 131058, 1, 131059, 1, 131060, 1, 131061, 1, 131062, 1, 131063, 1, 131064, 1, 131065, 1, 131066, 1, 131067, 1, 131068, 1, 131069, 1, 131070, 1, 131071, 1, 65536, 1, 65537, 1, 65538, 1, 65539, 1, 65540, 1, 65541, 1, 65542, 1, 65543, 1, 65544, 1, 65545, 1, 65546, 1, 65547, 1, 65548, 1, 65549, 1, 65550, 1, 65551, 0, 196592, 0, 196593, 1, 196594, 1, 196595, 1, 196596, 1, 196597, 1, 196598, 1, 196599, 1, 196600, 1, 196601, 1, 196602, 1, 196603, 1, 196604, 1, 196605, 1, 196606, 1, 196607, 1, 131072, 1, 131073, 1, 131074, 1, 131075, 1, 131076, 1, 131077, 1, 131078, 1, 131079, 1, 131080, 1, 131081, 1, 131082, 1, 131083, 1, 131084, 1, 131085, 1, 131086, 1, 131087, 0, 262128, 0, 262129, 1, 262130, 1, 262131, 1, 262132, 1, 262133, 1, 262134, 1, 262135, 1, 262136, 1, 262137, 1, 262138, 1, 262139, 1, 262140, 1, 262141, 1, 262142, 1, 262143, 1, 196608, 1, 196609, 1, 196610, 1, 196611, 1, 196612, 1, 196613, 1, 196614, 1, 196615, 1, 196616, 1, 196617, 1, 196618, 1, 196619, 1, 196620, 1, 196621, 1, 196622, 1, 196623, 0, 327664, 0, 327665, 1, 327666, 1, 327667, 1, 327668, 1, 327669, 1, 327670, 1, 327671, 1, 327672, 1, 327673, 1, 327674, 1, 327675, 1, 327676, 1, 327677, 1, 327678, 1, 327679, 1, 262144, 1, 262145, 1, 262146, 1, 262147, 1, 262148, 1, 262149, 1, 262150, 1, 262151, 1, 262152, 1, 262153, 1, 262154, 1, 262155, 1, 262156, 1, 262157, 1, 262158, 1, 262159, 0, 393200, 0, 393201, 1, 393202, 1, 393203, 1, 393204, 1, 393205, 1, 393206, 1, 393207, 1, 393208, 1, 393209, 1, 393210, 1, 393211, 1, 393212, 1, 393213, 1, 393214, 1, 393215, 1, 327680, 1, 327681, 1, 327682, 1, 327683, 1, 327684, 1, 327685, 1, 327686, 1, 327687, 1, 327688, 1, 327689, 1, 327690, 1, 327691, 1, 327692, 1, 327693, 1, 327694, 1, 327695, 0, 458736, 0, 458737, 1, 458738, 1, 458739, 1, 458740, 1, 458741, 1, 458742, 1, 458743, 1, 458744, 1, 458745, 1, 458746, 1, 458747, 1, 458748, 1, 458749, 1, 458750, 1, 458751, 1, 393216, 1, 393217, 1, 393218, 1, 393219, 1, 393220, 1, 393221, 1, 393222, 1, 393223, 1, 393224, 1, 393225, 1, 393226, 1, 393227, 1, 393228, 1, 393229, 1, 393230, 1, 393231, 0, 524272, 0, 524273, 1, 524274, 1, 524275, 1, 524276, 1, 524277, 1, 524278, 1, 524279, 1, 524280, 1, 524281, 1, 524282, 1, 524283, 1, 524284, 1, 524285, 1, 524286, 1, 524287, 1, 458752, 1, 458753, 1, 458754, 1, 458755, 1, 458756, 1, 458757, 1, 458758, 1, 458759, 1, 458760, 1, 458761, 1, 458762, 1, 458763, 1, 458764, 1, 458765, 1, 458766, 1, 458767, 0, 589808, 0, 589809, 0, 589810, 0, 589811, 0, 589812, 0, 589813, 0, 589814, 0, 589815, 0, 589816, 0, 589817, 0, 589818, 0, 589819, 0, 589820, 0, 589821, 0, 589822, 0, 589823, 0, 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524295, 0, 524296, 0, 524297, 0, 524298, 0, 524299, 0, 524300, 0, 524301, 0, 524302, 0, 524303, 0 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="KrackenLabelContainer" type="Node" parent="."]
+
+[node name="KrackenLabel" type="RichTextLabel" parent="KrackenLabelContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 124.0
+margin/top = -21.2624
+margin/right = 204.0
+margin/bottom = -2.26242
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0.0507813, 0.66629, 1, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "Kracken"
+visible_characters = -1
+__meta__ = { "_edit_lock_":true }
+
+[node name="Hard" type="RichTextLabel" parent="KrackenLabelContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 139.0
+margin/top = -1.63949
+margin/right = 194.0
+margin/bottom = 38.3605
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0.992188, 0.00775146, 0.00775146, 1 )
+custom_colors/font_color_selected = Color( 0.707031, 0.0497131, 0.0497131, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "HARD"
+visible_characters = -1
+__meta__ = { "_edit_lock_":true }
+
+[node name="KrackenLabelContainer1" type="Node" parent="."]
+
+[node name="KrackenLabel" type="RichTextLabel" parent="KrackenLabelContainer1"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -191.377
+margin/top = -16.9019
+margin/right = -111.377
+margin/bottom = 2.0981
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0.0507813, 0.66629, 1, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "Sans"
+visible_characters = -1
+
+[node name="Hard" type="RichTextLabel" parent="KrackenLabelContainer1"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -191.0
+margin/top = 4.98344
+margin/right = -136.0
+margin/bottom = 44.9834
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0.992188, 0.00775146, 0.00775146, 1 )
+custom_colors/font_color_selected = Color( 0.707031, 0.0497131, 0.0497131, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "Easy"
+visible_characters = -1
+
+[node name="Pentagram" parent="." instance=ExtResource( 4 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 161.895, 47.1919 )
+script/script = ExtResource( 5 )
+
+[node name="Light2D" parent="Pentagram"]
+
+color = Color( 1, 1, 1, 1 )
+
+[node name="Pentagram1" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 1.94444, 109.446 )
+
+[node name="Pentagram2" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -170.291, 46.5152 )
+script/script = ExtResource( 6 )
+
+[node name="WASD" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -57.0
+margin/top = -126.0
+margin/right = 96.0
+margin/bottom = -88.0
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 1, 0.046875, 0.046875, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "WASD to Move"
+visible_characters = -1
+
+[node name="Arrows" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -96.0
+margin/top = -107.0
+margin/right = 108.0
+margin/bottom = -69.0
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 1, 0.046875, 0.046875, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "Hold Arrows To Shoot"
+visible_characters = -1
+
+[node name="WINNER!" type="RichTextLabel" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -94.0
+margin/top = -106.0
+margin/right = 110.0
+margin/bottom = -29.0
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 1, 0.960938, 0, 1 )
+custom_colors/selection_color = Color( 0.9375, 0.82612, 0.098877, 1 )
+bbcode/enabled = true
+bbcode/bbcode = "[center]VICTORY!\nThanks for playing :)\n\nESC to quit"
+visible_characters = -1
+
+[node name="CreditsLabel" type="RichTextLabel" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -27.0
+margin/top = 75.0166
+margin/right = 49.0
+margin/bottom = 113.017
+custom_fonts/normal_font = ExtResource( 7 )
+custom_colors/default_color = Color( 1, 0.046875, 0.046875, 1 )
+bbcode/enabled = false
+bbcode/bbcode = "Credits"
+visible_characters = -1
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+
+editor/display_folded = true
+
+[node name="Camera2D" parent="Player"]
+
+drag_margin/left = 100.0
+drag_margin/top = 1.0
+drag_margin/right = 1.0
+drag_margin/bottom = 1.0
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+__meta__ = { "_edit_lock_":true }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/animate = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "animate"
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 9 )
+stream/play = false
+stream/loop = false
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="Credits" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Panel" type="Panel" parent="Credits"]
+
+visibility/opacity = 0.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 41.0
+margin/top = 47.0
+margin/right = 1250.0
+margin/bottom = 587.0
+
+[node name="Credits" type="RichTextLabel" parent="Credits"]
+
+visibility/opacity = 0.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 60.0
+margin/top = 62.0
+margin/right = 1225.0
+margin/bottom = 578.0
+custom_fonts/normal_font = ExtResource( 7 )
+custom_colors/default_color = Color( 1, 0, 0, 1 )
+bbcode/enabled = true
+bbcode/bbcode = "[center][u]Credits[/u]\n\nGame made for a gamejam in 72 hours\nThemes: Boss Fights & Twin Sticks\n\nArt & Programming: \nDarrell Whittall\n\nBoss Music:\nBrad Podray - maximalismmusic.com\n\nOther Sounds from:\ngamesounds.xyz\nSoundbits\nColl anderson\n\nand the kenpixel font by Kenney.nl\n\nMade with:\nGodot - godotengine.org\nAseprite - aseprite.org\n \n"
+visible_characters = -1
+
+[node name="CreditsPortal" type="Area2D" parent="."]
+
+transform/pos = Vector2( 1.94444, 109.446 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 2, 0, 0, 2, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CreditsPortal"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+"anims/Hide credits" = SubResource( 3 )
+"anims/Show credits" = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CreditsPortal"]
+
+transform/scale = Vector2( 2, 2 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="SansPortal" type="Area2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -171.594, 44.8845 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SansPortal"]
+
+transform/pos = Vector2( -171.594, 44.8845 )
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
+
+[node name="KrackenPortal" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 160.644, 45.7724 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KrackenPortal"]
+
+transform/pos = Vector2( 160.644, 45.7724 )
+shape = SubResource( 6 )
+trigger = false
+_update_shape_index = 0
+
+[node name="SwitchLevelAnimator" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/kracken = SubResource( 7 )
+anims/sans = SubResource( 8 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="CompleteAnim" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/win = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[connection signal="timeout" from="Player/AttackTimer" to="Player" method="_on_AttackTimer_timeout"]
+
+[connection signal="body_enter" from="CreditsPortal" to="." method="_on_CreditsPortal_body_enter"]
+
+[connection signal="body_exit" from="CreditsPortal" to="." method="_on_CreditsPortal_body_exit"]
+
+[connection signal="body_enter" from="SansPortal" to="." method="_on_SansPortal_body_enter"]
+
+[connection signal="body_enter" from="KrackenPortal" to="." method="_on_KrackenPortal_body_enter"]
+
+
+[editable path="Pentagram"]
+[editable path="Player"]

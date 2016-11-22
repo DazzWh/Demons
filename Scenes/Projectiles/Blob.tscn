@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://Scenes/Projectiles/Blob.gd" type="Script" id=1]
+[ext_resource path="res://Images/particle_smoke.tex" type="Texture" id=2]
+[ext_resource path="res://Images/kraken.tex" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="Blob" type="KinematicBody2D"]
+
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+config/amount = 10
+config/lifetime = 0.3
+config/texture = ExtResource( 2 )
+params/direction = 180.0
+params/spread = 49.0
+params/linear_velocity = 20.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 0.2
+params/final_size = 0.1
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/spread = 1.0
+randomness/linear_velocity = 1.0
+color/color = Color( 0.120934, 0.675781, 0.0739136, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+region = true
+region_rect = Rect2( 406, 155, 6, 6 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.2, 0, 0, 0.2, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/scale = Vector2( 0.2, 0.2 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
+
+

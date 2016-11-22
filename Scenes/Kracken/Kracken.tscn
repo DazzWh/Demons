@@ -1,0 +1,286 @@
+[gd_scene load_steps=14 format=1]
+
+[ext_resource path="res://Scenes/Kracken/Kracken.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Kracken/Kracken_head.gd" type="Script" id=2]
+[ext_resource path="res://Images/kraken.tex" type="Texture" id=3]
+[ext_resource path="res://Scenes/Kracken/Tentacle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Audio/TheLibrarybyMTC_GrowlMonster_Effort_92_96k.wav" type="Sample" id=5]
+[ext_resource path="res://Audio/249686__cylon8472__cthulhu-growl.wav" type="Sample" id=6]
+[ext_resource path="res://Audio/KrackenHurt.wav" type="Sample" id=7]
+[ext_resource path="res://Audio/TheLibrarybyMTC_GrowlMonster_Roar_26_96k.wav" type="Sample" id=8]
+[ext_resource path="res://Scenes/Kracken/BigTentacle.tscn" type="PackedScene" id=9]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "hit"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ] }
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "submerge"
+length = 1.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 2, 17 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:collision/layers")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.1, 1.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 2, 0, 0 ] }
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/emerge = { "db":20.0, "pitch":1.0, "sample":ExtResource( 5 ) }
+samples/end = { "db":24.0, "pitch":1.0, "sample":ExtResource( 6 ) }
+samples/hit = { "db":-3.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/submerge = { "db":20.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+
+[node name="Kracken" type="KinematicBody2D"]
+
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+
+[node name="Head" type="KinematicBody2D" parent="."]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 2.5, 0, 0, 2.5, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 0
+collision/mask = 2
+collision/margin = 0.08
+script/script = ExtResource( 2 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="Sprite" type="Sprite" parent="Head"]
+
+texture = ExtResource( 3 )
+vframes = 5
+hframes = 10
+frame = 17
+
+[node name="HitAnimation" type="AnimationPlayer" parent="Head"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/hit = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/submerge = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+
+visibility/visible = false
+transform/scale = Vector2( 2.5, 2.5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="EmergeTimer" type="Timer" parent="Head"]
+
+process_mode = 1
+wait_time = 4.0
+one_shot = false
+autostart = false
+
+[node name="StartTimer" type="Timer" parent="Head"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = true
+
+[node name="Tentacles" type="Node2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, -2 )
+
+[node name="Tentacle1" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -46.9942, 34.024 )
+
+[node name="Tentacle22" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -113.893, 20.5786 )
+
+[node name="Tentacle21" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -84.2597, 23.1012 )
+
+[node name="Tentacle2" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -247.401, 244.016 )
+
+[node name="Tentacle9" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -220.049, 220.546 )
+
+[node name="Tentacle8" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -286.922, 178.769 )
+
+[node name="Tentacle25" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -263.686, 198.221 )
+
+[node name="Tentacle7" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -266.218, 151.614 )
+
+[node name="Tentacle6" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -220.801, 108.635 )
+
+[node name="Tentacle19" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -243.858, 127.728 )
+
+[node name="Tentacle10" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -218.579, 66.9133 )
+
+[node name="Tentacle5" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -196.709, 32.5791 )
+
+[node name="Tentacle20" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -157.567, 34.5694 )
+
+[node name="Tentacle4" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 198.182, 43.8572 )
+
+[node name="Tentacle26" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 125.206, 22.6279 )
+
+[node name="Tentacle3" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 195.994, 167.334 )
+
+[node name="Tentacle18" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 197.464, 220.26 )
+
+[node name="Tentacle17" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 231.658, 215.119 )
+
+[node name="Tentacle16" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 176.147, 197.472 )
+
+[node name="Tentacle15" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 223.579, 178.268 )
+
+[node name="Tentacle24" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 227.902, 142.605 )
+
+[node name="Tentacle14" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 240.879, 99.3742 )
+
+[node name="Tentacle23" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 218.827, 69.2356 )
+
+[node name="Tentacle13" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 157.111, 34.7204 )
+
+[node name="Tentacle12" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 87.2174, 34.5694 )
+
+[node name="Tentacle11" parent="Tentacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 46.0525, 34.5694 )
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 5
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
+
+[node name="BigTentacle" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 217.274, -64.369 )
+
+[node name="BigTentacle2" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 215.746, 67.2442 )
+
+[node name="BigTentacle3" parent="." instance=ExtResource( 9 )]
+
+editor/display_folded = true
+transform/pos = Vector2( -240.207, 1.57945 )
+
+[node name="Sprite" parent="BigTentacle3"]
+
+flip_h = true
+
+[node name="DeathArea2d" parent="BigTentacle3"]
+
+transform/pos = Vector2( 400, 162 )
+
+[node name="BaseCollisionShape" parent="BigTentacle3"]
+
+transform/pos = Vector2( 18.4379, 165.379 )
+
+[node name="StaticBody2D" parent="BigTentacle3"]
+
+transform/pos = Vector2( 420, 0 )
+
+[connection signal="timeout" from="Head/EmergeTimer" to="Head" method="_on_EmergeTimer_timeout"]
+
+[connection signal="timeout" from="Head/StartTimer" to="Head" method="_on_StartTimer_timeout"]
+
+[connection signal="timeout" from="BigTentacle3/SubmergeTimer" to="BigTentacle3" method="_on_SubmergeTimer_timeout"]
+
+[connection signal="timeout" from="BigTentacle3/EmergeTimer" to="BigTentacle3" method="_on_EmergeTimer_timeout"]
+
+[connection signal="body_enter" from="BigTentacle3/DeathArea2d" to="BigTentacle3" method="_on_DeathArea2d_body_enter"]
+
+
+[editable path="BigTentacle3"]
